@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace HelloKitty.Controllers{
     public class RegistrationController : Controller{
         private static Dictionary<string,RegistrationViewModel> users = new Dictionary<string, RegistrationViewModel>();
+        private static ApplicationContext db = new ApplicationContext();
         private static bool loggedIn;
-        private static string currentUser;
+        private static int currentUser;
         [HttpGet]
        
         public IActionResult Index(string email, string password, string name){
@@ -25,30 +26,34 @@ namespace HelloKitty.Controllers{
         }
         [HttpPost]
         public IActionResult Index(RegistrationViewModel model){
-            users.Add(model.Name,model);
+            //users.Add(model.Name,model);
+            db.Registration.Add(model);
+            db.SaveChanges();
             loggedIn = true;
-            currentUser = model.Name;
+            currentUser = model.Id;
             return RedirectToAction("UserPage","Registration");
         }
 
         [HttpGet]
         public IActionResult UserPage(){
             if (!loggedIn){
-                return RedirectToAction("Index", "Registration");
+                return RedirectToAction("LogIn", "Registration");
             }
-            return View(users[currentUser]);
+
+            var model = db.Registration.Find(currentUser);
+            return View(model);
         }
 
         [HttpPost]
         public IActionResult UserPage(bool leave){
             loggedIn = false;
-            currentUser = "";
+            currentUser = -1;
             return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
         public IActionResult LogIn(string name, string password){
-            if (users.Count == 0) return RedirectToAction("Index", "Registration");
+            //if (users.Count == 0) return RedirectToAction("Index", "Registration");
             var model = new RegistrationViewModel{
                 Name = name,
                 Password = password
@@ -57,14 +62,14 @@ namespace HelloKitty.Controllers{
         }
         [HttpPost]
         public IActionResult LogIn(RegistrationViewModel model){
-            if (users.ContainsKey(model.Name)){
-                var user = users[model.Name];
+            //if (users.ContainsKey(model.Name)){
+            var user = db.Registration.Find(model.Name);
                 if (model.Password == user.Password){
                     loggedIn = true;
-                    currentUser = model.Name;
+                    currentUser = model.Id;
                     return RedirectToAction("UserPage","Registration");
                 }
-            }
+           // }
             return View();
         }
         

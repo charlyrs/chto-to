@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\charl\\RiderProjects\\HelloKitty\\HelloKitty\\HelloKitty.csproj": {}
+    "D:\\FAMCS\\test\\HelloKitty\\HelloKitty\\HelloKitty.csproj": {}
   },
   "projects": {
-    "C:\\Users\\charl\\RiderProjects\\HelloKitty\\HelloKitty\\HelloKitty.csproj": {
+    "D:\\FAMCS\\test\\HelloKitty\\HelloKitty\\HelloKitty.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\charl\\RiderProjects\\HelloKitty\\HelloKitty\\HelloKitty.csproj",
+        "projectUniqueName": "D:\\FAMCS\\test\\HelloKitty\\HelloKitty\\HelloKitty.csproj",
         "projectName": "HelloKitty",
-        "projectPath": "C:\\Users\\charl\\RiderProjects\\HelloKitty\\HelloKitty\\HelloKitty.csproj",
+        "projectPath": "D:\\FAMCS\\test\\HelloKitty\\HelloKitty\\HelloKitty.csproj",
         "packagesPath": "C:\\Users\\charl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\charl\\RiderProjects\\HelloKitty\\HelloKitty\\obj\\",
+        "outputPath": "D:\\FAMCS\\test\\HelloKitty\\HelloKitty\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\charl\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -35,6 +35,16 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
