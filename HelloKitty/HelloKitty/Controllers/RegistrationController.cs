@@ -63,12 +63,12 @@ namespace HelloKitty.Controllers{
         [HttpPost]
         public IActionResult LogIn(RegistrationViewModel model){
             //if (users.ContainsKey(model.Name)){
-            var user = db.Registration.Find(model.Name);
-                if (model.Password == user.Password){
-                    loggedIn = true;
-                    currentUser = model.Id;
-                    return RedirectToAction("UserPage","Registration");
-                }
+            //var user = db.Registration.Find(model.Name);
+                // if (model.Password == user.Password){
+                //     loggedIn = true;
+                //     currentUser = model.Id;
+                //     return RedirectToAction("UserPage","Registration");
+                // }
            // }
             return View();
         }
